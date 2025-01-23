@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture Control System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-hand-paper text-3xl text-blue-600 mr-2"></i>
+                    <span class="font-bold text-xl text-gray-800">Hand Gesture Control</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#control-panel" class="text-gray-600 hover:text-blue-600">Control Panel</a>
+                    <a href="#features" class="text-gray-600 hover:text-blue-600">Features</a>
+                    <a href="#usage" class="text-gray-600 hover:text-blue-600">Usage Guide</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-blue-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h1 class="text-4xl font-bold mb-4">Control Your Computer with Hand Gestures</h1>
+                    <p class="text-xl mb-8">An intuitive and modern way to control volume, brightness, and mouse movements using hand gestures captured through your webcam.</p>
+                    <div class="space-x-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Control Panel Section -->
+    <section id="control-panel" class="py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-6">Control Panel</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Video Feed -->
+                    <div class="relative">
+                        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video Feed" class="w-full rounded-lg">
+                        <div class="absolute top-4 right-4 space-x-2">
+                            <button id="startBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                <i class="fas fa-play mr-2"></i>Start
+                            </button>
+                            <button id="stopBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                                <i class="fas fa-stop mr-2"></i>Stop
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Panel -->
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4">Current Status</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-600 mb-2">Volume</label>
+                                <div class="relative pt-1">
+                                    <div class="flex mb-2 items-center justify-between">
+                                        <div>
+                                            <span id="volumeValue" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200">
+                                                0%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                                        <div id="volumeBar" style="width:0%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-600 mb-2">Brightness</label>
+                                <div class="relative pt-1">
+                                    <div class="flex mb-2 items-center justify-between">
+                                        <div>
+                                            <span id="brightnessValue" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200">
+                                                0%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200">
+                                        <div id="brightnessBar" style="width:0%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Key Features</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-blue-600 text-3xl mb-4">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Volume Control</h3>
+                    <p class="text-gray-600">Control system volume using right hand gestures. Pinch your thumb and index finger to adjust volume levels.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-blue-600 text-3xl mb-4">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Brightness Control</h3>
+                    <p class="text-gray-600">Adjust screen brightness using left hand gestures. Perfect for quick adjustments without touching controls.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-blue-600 text-3xl mb-4">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Mouse Control</h3>
+                    <p class="text-gray-600">Move your mouse cursor using hand positioning. Enable touchless computer control.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Installation Guide</h2>
+            <div class="bg-white rounded-lg shadow-md p-8 max-w-3xl mx-auto">
+                <h3 class="text-xl font-semibold mb-4">Prerequisites</h3>
+                <ul class="list-disc list-inside mb-6 text-gray-600">
+                    <li>Python 3.7 or higher</li>
+                    <li>Webcam</li>
+                    <li>Windows/Linux/MacOS</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold mb-4">Step 1: Install Required Packages</h3>
+                <div class="bg-gray-800 text-white p-4 rounded-lg mb-6">
+                    <code>pip install opencv-python mediapipe pycaw comtypes numpy screen-brightness-control PyQt5 pyautogui</code>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-4">Step 2: Download the Application</h3>
+                <p class="text-gray-600 mb-6">Clone the repository or download the source code from our GitHub repository.</p>
+
+                <h3 class="text-xl font-semibold mb-4">Step 3: Run the Application</h3>
+                <div class="bg-gray-800 text-white p-4 rounded-lg">
+                    <code>python gesture_control.py</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Usage Guide Section -->
+     <section id="usage" class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Usage Guide</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4">Volume Control</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Use your right hand</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Pinch thumb and index finger</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Adjust distance to control volume</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4">Brightness Control</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Use your left hand</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Pinch thumb and index finger</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Adjust distance to control brightness</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Hand Gesture Control</h4>
+                    <p class="text-gray-400">Control your computer naturally using hand gestures.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#features" class="hover:text-white">Features</a></li>
+                        <li><a href="#installation" class="hover:text-white">Installation</a></li>
+                        <li><a href="#usage" class="hover:text-white">Usage Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Hand Gesture Control. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+    <!-- Rest of the sections remain the same as before -->
+
+    <script>
+        $(document).ready(function() {
+            let statusInterval;
+
+            function updateStatus() {
+                $.get('/status', function(data) {
+                    $('#volumeValue').text(data.volume + '%');
+                    $('#volumeBar').css('width', data.volume + '%');
+                    $('#brightnessValue').text(data.brightness + '%');
+                    $('#brightnessBar').css('width', data.brightness + '%');
+                });
+            }
+
+            $('#startBtn').click(function() {
+                $.get('/start', function(response) {
+                    if (response.success) {
+                        $('#video-feed').attr('src', "{{ url_for('video_feed') }}");
+                        statusInterval = setInterval(updateStatus, 100);
+                        $('#startBtn').prop('disabled', true).addClass('opacity-50');
+                        $('#stopBtn').prop('disabled', false).removeClass('opacity-50');
+                    }
+                });
+            });
+
+            $('#stopBtn').click(function() {
+                $.get('/stop', function(response) {
+                    if (response.success) {
+                        clearInterval(statusInterval);
+                        $('#video-feed').attr('src', '');
+                        $('#startBtn').prop('disabled', false).removeClass('opacity-50');
+                        $('#stopBtn').prop('disabled', true).addClass('opacity-50');
+                    }
+                });
+            });
+
+            // Initially disable stop button
+            $('#stopBtn').prop('disabled', true).addClass('opacity-50');
+        });
+    </script>
+</body>
+</html>
